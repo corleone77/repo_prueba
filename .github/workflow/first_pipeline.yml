@@ -24,6 +24,5 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      # For verification
       - name: Show files changed
         run: echo 'Hola Mundo'
