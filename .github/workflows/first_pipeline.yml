@@ -24,12 +24,5 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Setup node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16.13.x
-          cache: npm
-
-      # For verification
       - name: Show files changed
         run: echo 'Hola Mundo'
