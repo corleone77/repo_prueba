@@ -49,7 +49,7 @@ jobs:
           ENVIRONMENT: "${{ vars.ENVIRONMET_STAGE }}"
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: $ENVIRONMENT
+          branch: ${{github.action_ref}}
 
       #- name: Commit and Push
       #  env:
