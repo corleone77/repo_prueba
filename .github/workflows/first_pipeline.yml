@@ -15,6 +15,7 @@ on:
 
 jobs:
   check-links:
+    if: github.event.pull_request.merged == true
     runs-on: "ubuntu-latest"
     environment: ${{ github.base_ref }}
     steps:
@@ -38,7 +39,6 @@ jobs:
           echo "$SOURCE"
           echo "$TARGET"
           echo "$ENVIRONMET_STAGE"
-          pwd
           .scripts/substitution.sh $SOURCE $TARGET
 
       - name: Commit and Push
@@ -48,6 +48,12 @@ jobs:
           GIT_STATUS=$(git status)
           if [[ $GIT_STATUS ]]; then
             git add ./replacement
-            git commit -m "Replacement of variables"
+            git commit -m "Replacement of variables $ENV_STAGE"
             git pull origin ${{ github.base_ref }}
           fi
+
+      - name: Push Changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.TOKEN_PAT }}
+          force: true
