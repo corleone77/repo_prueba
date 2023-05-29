@@ -9,20 +9,38 @@ on:
   push:
     branches:
       - main
+      - dev
   pull_request:
-
-permissions:
-  contents: read
-  # Needed for the 'trilom/file-changes-action' action
-  pull-requests: read
-
+    types:
+      - edited
+      - opened
+      - closed
 
 jobs:
   check-links:
-    runs-on: ${{ fromJSON('["ubuntu-latest", "self-hosted"]')[github.repository == 'github/docs-internal'] }}
+    runs-on: "ubuntu-latest"
+    environment: ${{ github.base_ref }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       - name: Show files changed
         run: echo 'Hola Mundo'
+
+      - name: Execution Bash Script
+        env:
+          SOURCE: ${{ vars.SOURCE }}
+          TARGET: ${{ vars.TARGET }}
+        run: |
+          pwd
+          .scripts/substitution.sh $SOURCE $TARGET
+
+      - name: Commit and Push
+        run: |
+          git config user.email github-actions@github.com
+          git add .
+          git config user.name cor77
+          git commit -m "generated"
+          git push
