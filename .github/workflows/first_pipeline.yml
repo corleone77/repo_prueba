@@ -8,13 +8,11 @@ on:
       - dev
   pull_request:
     types:
-      - edited
       - opened
       - closed
-      - synchronize
 
 jobs:
-  check-links:
+  changes-strings:
     if: github.event.pull_request.merged == true
     runs-on: "ubuntu-latest"
     environment: ${{ github.base_ref }}
@@ -38,7 +36,7 @@ jobs:
         run: |
           echo "$SOURCE"
           echo "$TARGET"
-          echo "$ENVIRONMET_STAGE"
+          echo "$ENVIRONT"
           .scripts/substitution.sh $SOURCE $TARGET
 
       - name: Commit and Push
