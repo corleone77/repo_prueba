@@ -64,3 +64,4 @@ jobs:
       #      git commit -m "Replacement of variables $ENV_STAGE"
       #      git pull origin ${ENV_STAGE}
       #    fi
+
