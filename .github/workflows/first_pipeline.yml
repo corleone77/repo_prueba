@@ -1,4 +1,4 @@
-name: 'Link Checker: All English'
+name: 'Close PR replacement'
 
 # **What it does**: Renders the content of every page and check all internal links.
 # **Why we have it**: To make sure all links connect correctly.
@@ -25,27 +25,32 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
+          persist-credentials: true
 
-      - name: Show files changed
-        run: echo 'Hola Mundo'
+      - name: Git config
+        run: |
+          git config --global user.mail "no-reply@github.com"
+          git config --global user.name "Actions service account"
 
       - name: Execution Bash Script
         env:
-          SOURCE: ${{ vars.SOURCE }}
-          TARGET: ${{ vars.TARGET }}
+          SOURCE: "${{ vars.SOURCE }}"
+          TARGET: "${{ vars.TARGET }}"
+          ENVIRONT: "${{ vars.ENVIRONMET_STAGE }}"
         run: |
+          echo "$SOURCE"
+          echo "$TARGET"
+          echo "$ENVIRONMET_STAGE"
           pwd
           .scripts/substitution.sh $SOURCE $TARGET
 
       - name: Commit and Push
+        env:
+          ENV_STAGE: ${{vars.ENVIRONMET_STAGE}}
         run: |
           GIT_STATUS=$(git status)
           if [[ $GIT_STATUS ]]; then
-            git config user.email github-actions@github.com
-            git add .
-            git config user.name cor77
+            git add ./replacement
             git commit -m "Replacement of variables"
             git pull origin ${{ github.base_ref }}
-          else
-            echo "Don't changes detected"
           fi
