@@ -23,11 +23,6 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
-      - name: Git config
-        run: |
-          git config --global user.mail "corleone77daniel@gmail.com"
-          git config --global user.name "Cor77"
-
       - name: Execution Bash Script
         env:
           SOURCE: "${{ vars.SOURCE }}"
