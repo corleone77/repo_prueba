@@ -8,8 +8,7 @@ for i in `grep -ir  "$SOURCE" ./replacement/* | awk '{print $1}'| cut -d ":" -f1
 	echo $TARGET
 	echo $i
 
-	sed -i "s/${SOURCE}/{$TARGET}/" $i
-	echo "Variable Replaced"
+	sed -i "s/$SOURCE/$TARGET/" $i
 	cat ./replacement/*
 	
 done
