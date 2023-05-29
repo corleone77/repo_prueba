@@ -45,19 +45,9 @@ jobs:
         run: |
           GIT_STATUS=$(git status)
           if [[ $GIT_STATUS ]]; then
-<<<<<<< HEAD
             git add ./replacement
             git commit -m "Replacement of variables $ENV_STAGE"
             git pull origin ${{ github.base_ref }}
-=======
-            git config user.email github-actions@github.com
-            git add .
-            git config user.name cor77
-            git commit -m "Replacement of variables"
-            git pull origin ${{ github.base_ref }}
-          else
-            echo "Don't changes detected"
->>>>>>> 41db99a (new variables branch dev)
           fi
 
       - name: Push Changes
