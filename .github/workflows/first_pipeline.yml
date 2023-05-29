@@ -52,6 +52,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           force: true
+          branch: ${{ github.base_ref }}
 
 
       #- name: Commit and Push
