@@ -41,8 +41,8 @@ jobs:
           GIT_STATUS=$(git status)
           echo $ENV_STAGE
           if [[ $GIT_STATUS ]]; then
-            git config --global user.mail "corleone1977@protonmail.com"
-            git config --global user.name "corleone77"
+            git config  user.mail "corleone1977@protonmail.com"
+            git config  user.name "cor77"
             git add ./replacement
             git commit -m "Replacement of variables $ENV_STAGE"
             git pull origin ${ENV_STAGE}
