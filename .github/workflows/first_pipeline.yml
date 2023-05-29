@@ -21,7 +21,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
-          persist-credentials: true
+          persist-credentials: false
 
       - name: Git config
         run: |
@@ -47,11 +47,5 @@ jobs:
           if [[ $GIT_STATUS ]]; then
             git add ./replacement
             git commit -m "Replacement of variables $ENV_STAGE"
-            git pull origin $ENV_STAGE
+            git pull origin ${ENV_STAGE}
           fi
-
-      - name: Push Changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.TOKEN_PAT }}
-          force: true
