@@ -38,6 +38,8 @@ jobs:
         env:
           ENV_STAGE: ${{ vars.ENVIRONMET_STAGE }}
         run: |
+          git config  --global user.name "cor77"
+          git config --global user.mail "corleone1977@protonmail.com"
           GIT_STATUS=$(git status)
           echo $ENV_STAGE
           git config --global user.mail "corleone1977@protonmail.com"
