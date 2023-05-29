@@ -10,4 +10,5 @@ for i in `grep -ir  "$SOURCE" ./replacement/* | awk '{print $1}'| cut -d ":" -f1
 	sed -i "s/$SOURCE/$TARGET/" $i
 
 	echo "Variable Replaced"
+	
 done
