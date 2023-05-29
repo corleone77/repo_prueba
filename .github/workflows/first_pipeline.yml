@@ -11,6 +11,7 @@ on:
       - edited
       - opened
       - closed
+      - synchronize
 
 jobs:
   check-links:
@@ -25,8 +26,8 @@ jobs:
 
       - name: Git config
         run: |
-          git config --global user.mail "no-reply@github.com"
-          git config --global user.name "Actions service account"
+          git config --global user.mail "corleone77daniel@gmail.com"
+          git config --global user.name "Cor77"
 
       - name: Execution Bash Script
         env:
