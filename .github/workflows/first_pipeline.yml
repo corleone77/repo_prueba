@@ -27,7 +27,6 @@ jobs:
         run: |
           git config --global user.mail "corleone77daniel@gmail.com"
           git config --global user.name "Cor77"
-          git commit --amend --reset-author
 
       - name: Execution Bash Script
         env:
